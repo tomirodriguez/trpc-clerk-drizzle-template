@@ -16,6 +16,7 @@ import { initTRPC, TRPCError } from "@trpc/server";
 import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
 import superjson from "superjson";
 import { ZodError } from "zod";
+import { drizzle } from "../db/index";
 
 /**
  * 1. CONTEXT
@@ -42,6 +43,7 @@ interface AuthContext {
 const createInnerTRPCContext = ({ auth }: AuthContext) => {
   return {
     auth,
+    drizzle,
   };
 };
 

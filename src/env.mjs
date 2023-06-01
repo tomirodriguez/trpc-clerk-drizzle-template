@@ -9,6 +9,10 @@ export const env = createEnv({
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]),
     CLERK_SECRET_KEY: z.string().min(1),
+    DATABASE_HOST: z.string().min(1),
+    DATABASE_USERNAME: z.string().min(1),
+    DATABASE_PASSWORD: z.string().min(1),
+    DATABASE_NAME: z.string().min(1),
   },
 
   /**
@@ -29,6 +33,10 @@ export const env = createEnv({
     CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:
       process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
+    DATABASE_HOST: process.env.DATABASE_HOST,
+    DATABASE_USERNAME: process.env.DATABASE_USERNAME,
+    DATABASE_PASSWORD: process.env.DATABASE_PASSWORD,
+    DATABASE_NAME: process.env.DATABASE_NAME,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.
