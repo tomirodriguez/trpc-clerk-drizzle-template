@@ -1,20 +1,16 @@
 import type { Config } from "drizzle-kit";
 import "dotenv/config";
 
-const { DATABASE_HOST, DATABASE_USERNAME, DATABASE_PASSWORD, DATABASE_NAME } =
-  process.env;
+const { DATABASE_URL } = process.env;
 
-if (
-  !DATABASE_HOST ||
-  !DATABASE_USERNAME ||
-  !DATABASE_PASSWORD ||
-  !DATABASE_NAME
-)
-  throw new Error("INVALID ENV VARIABLES");
+if (!DATABASE_URL)
+  throw new Error(
+    "❌ No DATABASE_URL found. Remember to add it to your .env file"
+  );
 
 const config: Config = {
   schema: "./src/server/db/schema/*",
-  connectionString: `mysql://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@${DATABASE_HOST}/${DATABASE_NAME}?ssl={"rejectUnauthorized":true}`,
+  connectionString: process.env.DATABASE_URL,
 };
 
 export default config;
